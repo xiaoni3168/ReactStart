@@ -29,6 +29,7 @@ class ViewController: UIViewController, WKUIDelegate, WKNavigationDelegate, WKSc
         let userController = WKUserContentController()
         userController.add(self, name: "showAlertDialog")
         userController.add(self, name: "setNavigationBar")
+        userController.add(self, name: "closeInitLoading")
         let config = WKWebViewConfiguration()
         config.userContentController = userController
         webView = WKWebView(frame: CGRect(x: 0, y: 70, width: UIScreen.main.bounds.maxX, height: UIScreen.main.bounds.maxY - 70), configuration: config)
@@ -85,6 +86,9 @@ class ViewController: UIViewController, WKUIDelegate, WKNavigationDelegate, WKSc
                 let options = dic["options"] as! NSDictionary;
                 navItem.title = options["title"] as? String
             }
+        }
+        if(message.name == "closeInitLoading") {
+            print("close loading")
         }
     }
     
