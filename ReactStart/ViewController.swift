@@ -13,6 +13,7 @@ class ViewController: UIViewController, WKUIDelegate, WKNavigationDelegate, WKSc
     var navItem: UINavigationItem!
     var webView: WKWebView!
     var goBack: UIBarButtonItem!
+    var datePicker: DatePicker!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -30,6 +31,7 @@ class ViewController: UIViewController, WKUIDelegate, WKNavigationDelegate, WKSc
         userController.add(self, name: "showAlertDialog")
         userController.add(self, name: "setNavigationBar")
         userController.add(self, name: "closeInitLoading")
+        userController.add(self, name: "selectDate")
         let config = WKWebViewConfiguration()
         config.userContentController = userController
         webView = WKWebView(frame: CGRect(x: 0, y: 70, width: UIScreen.main.bounds.maxX, height: UIScreen.main.bounds.maxY - 70), configuration: config)
@@ -44,6 +46,9 @@ class ViewController: UIViewController, WKUIDelegate, WKNavigationDelegate, WKSc
             webView.loadHTMLString(html, baseURL: baseUrl)
         } catch {}
         view.addSubview(webView)
+        
+        
+        datePicker = DatePicker(mainView: self.view, webView: webView)
     }
 
     override func didReceiveMemoryWarning() {
@@ -61,16 +66,17 @@ class ViewController: UIViewController, WKUIDelegate, WKNavigationDelegate, WKSc
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
         decisionHandler(.allow)
+        print(navigationResponse.response.url)
         print("start 2")
     }
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        print(navigationAction.request)
         if(navigationAction.navigationType == .linkActivated) {
             decisionHandler(.cancel)
         } else {
             decisionHandler(.allow)
         }
-        print(navigationAction.request.url)
     }
     
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
@@ -83,12 +89,26 @@ class ViewController: UIViewController, WKUIDelegate, WKNavigationDelegate, WKSc
         if(message.name == "setNavigationBar") {
             print(message.body)
             if let dic = message.body as? NSDictionary {
-                let options = dic["options"] as! NSDictionary;
+                let options = dic["options"] as! NSDictionary
                 navItem.title = options["title"] as? String
             }
         }
         if(message.name == "closeInitLoading") {
             print("close loading")
+        }
+        if(message.name == "selectDate") {
+            print(message.body)
+            var callback: String
+            var initialDate: Int
+            var dateMode: String
+            if let dic = message.body as? NSDictionary {
+                callback = dic["callback"] as! String
+                initialDate = dic["initialDate"] as! Int
+                let options: NSDictionary = dic["options"] as! NSDictionary
+                dateMode = options["dateMode"] as! String
+                
+                datePicker.openDatePicker(initialDate: initialDate, mode: dateMode, callback: callback)
+            }
         }
     }
     

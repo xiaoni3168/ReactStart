@@ -16,6 +16,7 @@
 		C28B780F1DA8E9DA0045E2DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C28B780D1DA8E9DA0045E2DF /* LaunchScreen.storyboard */; };
 		C28B781A1DA8E9DA0045E2DF /* ReactStartTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28B78191DA8E9DA0045E2DF /* ReactStartTests.swift */; };
 		C28B78251DA8E9DA0045E2DF /* ReactStartUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28B78241DA8E9DA0045E2DF /* ReactStartUITests.swift */; };
+		C2F88E7C1DBFA8CE00F0B128 /* DatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F88E7B1DBFA8CE00F0B128 /* DatePicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		C28B78201DA8E9DA0045E2DF /* ReactStartUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReactStartUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C28B78241DA8E9DA0045E2DF /* ReactStartUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactStartUITests.swift; sourceTree = "<group>"; };
 		C28B78261DA8E9DA0045E2DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C2F88E7B1DBFA8CE00F0B128 /* DatePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 		C28B78031DA8E9DA0045E2DF /* ReactStart */ = {
 			isa = PBXGroup;
 			children = (
+				C2F88E7A1DBFA8B200F0B128 /* datePicker */,
 				C267754B1DB3D7710013BEE6 /* barcode */,
 				C28B78041DA8E9DA0045E2DF /* AppDelegate.swift */,
 				C28B78061DA8E9DA0045E2DF /* ViewController.swift */,
@@ -137,6 +140,14 @@
 				C28B78261DA8E9DA0045E2DF /* Info.plist */,
 			);
 			path = ReactStartUITests;
+			sourceTree = "<group>";
+		};
+		C2F88E7A1DBFA8B200F0B128 /* datePicker */ = {
+			isa = PBXGroup;
+			children = (
+				C2F88E7B1DBFA8CE00F0B128 /* DatePicker.swift */,
+			);
+			name = datePicker;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -280,6 +291,7 @@
 				C28B78071DA8E9DA0045E2DF /* ViewController.swift in Sources */,
 				C267754D1DB3D7A00013BEE6 /* BarcodeScan.swift in Sources */,
 				C28B78051DA8E9DA0045E2DF /* AppDelegate.swift in Sources */,
+				C2F88E7C1DBFA8CE00F0B128 /* DatePicker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -429,6 +441,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = N632UVY563;
 				INFOPLIST_FILE = ReactStart/Info.plist;
